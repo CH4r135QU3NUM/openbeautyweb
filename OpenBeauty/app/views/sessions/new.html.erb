@@ -1,0 +1,26 @@
+<h1>Content de te revoir parmis nous 🤠</h1>
+
+<% if logged_in? %>
+<p> Il semblerait que vous soyez déjà connecté(e), <%= current_user.name %> ! </p>
+
+<% else %>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      
+      <%= f.submit "C'est partit", class: "btn btn-primary" %>
+    <% end %>
+
+    
+    <p> <%= link_to " Tu es nouveau sur le site ? Inscris toi par là", new_user_path %></p>
+  </div>
+</div>
+
+<% end %>

@@ -1,0 +1,68 @@
+<div class="rounded-top">
+<h1>
+  <%= @event.name %>
+</h1>
+<p class="text-center"> Description : <%= @event.description %> </p>
+<p class="text-center"> Lieu : <%= @event.place %> </p>
+<p class="text-center"> Date : <%= @event.date.strftime("%d-%m-%Y") %> </p>
+<p class="text-center"> Créateur : <%= @event.creator.name %> </p>
+</div>
+  
+<p class="text-center">  <%= link_to "Rejoindre l'événement", { :controller => "events", :action => "suscribe"}, class: "btn btn-success" %> </p>
+
+<h2> Liste des participants </h2>
+
+<table class="table table-striped">
+      <tr>
+      <th>Nom</th>
+      <th>Adresse mail</th>
+      <th></th>
+
+    </tr>
+
+  <% @event.attendees.each do |attendee| %> 
+    <tr>
+    <td> <%= attendee.name %> </td>
+    <td> <%= attendee.email %> </td>
+    <td> <%= link_to('Voir le profil du participant', user_path(attendee)) %> </td>
+
+    </tr>
+    <% end %>
+  </table>
+
+  <% if logged_in? %>
+
+  <% if @event.date >= Date.today %> 
+  <h2> Ajoutez des participants </h2>
+
+  <table class="table table-striped">
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+
+  </tr>
+ 
+
+  <% alluser.each do |user| %> 
+  <% unless @event.attendees.include? user %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "Voir le profil", user_path(user) %></td>
+      <td><%= link_to "Ajoutez ce participant", { :controller => "events", :action => "adduser", :id => user.id, :test => @event.id}%></td>
+    </tr>
+  <% end %>
+  
+  <% end %>
+</table>
+ 
+ <% else %>
+ <h2> Vous souhaitez ajouter des participants à cet événement ? </h2>
+ <p class="text-center"><%= link_to "Log in", login_path, class: "btn btn-primary" %> </p>
+ 
+ <% end %>
+ <% else %>
+ <h2> Cet événement est passé. Vous ne pouvez plus ajouter de participants</h2>
+  <% end %>

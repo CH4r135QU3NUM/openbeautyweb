@@ -1,0 +1,22 @@
+<h1>Nos super membres</h1>
+ 
+<table class="table table-striped">
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th></th>
+
+  </tr>
+ 
+  <% @users.each do |user| %> 
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to "Voir le profil", user_path(user) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% unless logged_in? %>
+<p class="text-center"> <%= link_to "Sign up", new_user_path, class: "btn btn-success" %> or <%= link_to "Log in", login_path, class: "btn btn-primary" %> </p>
+<% end%>

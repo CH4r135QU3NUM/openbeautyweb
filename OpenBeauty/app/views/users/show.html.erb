@@ -1,0 +1,108 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1> 
+      	<%= gravatar_for @user %>
+      	<%= @user.name %> 
+      </h1>
+      <p> <%= @user.email %>
+      <% if logged_in? && current_user == @user %>
+        <p> <%= link_to('Editer mon profil', edit_user_path) %> </p>
+      <% end %>
+    </section>
+  </aside>
+</div>
+
+<h2> Evénements organisés par <%= @user.name %> à venir</h2>
+
+<% if !@user.created_events.empty? %>
+
+      <table class="table table-striped">
+  		<tr>
+    	<th>Nom de l'événement</th>
+    	<th>Date</th>
+    	<th>Lieu</th>
+
+   		<th></th>
+
+
+ 	 	</tr>
+		
+	<% @user.created_events.each do |event| %>
+  <% if event.date >= Date.today %> 
+		<tr>
+		<td> <%= event.name %> </td>
+		<td> <%= event.date.strftime("%d-%m-%Y")  %> </td>
+		<td> <%= event.place %> </td>
+		<td> <%= link_to('En voir plus', event_path(event)) %> </td>
+		</tr>
+		<% end %>
+    <% end %>
+
+  </table>
+  <% else %>
+  <p class="text-center"> <%= @user.name %> n'a aucun événement organisé à venir </p>
+
+  <% end %>
+
+<h2> Evénements organisés par <%= @user.name %> passés</h2>
+
+<% if !@user.created_events.empty? %>
+
+      <table class="table table-striped">
+      <tr>
+      <th>Nom de l'événement</th>
+      <th>Date</th>
+      <th>Lieu</th>
+      <th></th>
+    </tr>
+    
+  <% @user.created_events.each do |event| %> 
+  <% if event.date < Date.today %> 
+    <tr>
+    <td> <%= event.name %> </td>
+    <td> <%= event.date.strftime("%d-%m-%Y") %> </td>
+    <td> <%= event.place %> </td>
+    <td> <%= link_to('En voir plus', event_path(event)) %> </td>
+
+    </tr>
+    <% end %>
+    <% end %>
+
+  </table>
+
+  <% else %>
+  <p class="text-center"> <%= @user.name %> n'a aucun événement organisé passé </p>
+
+  <% end %>
+
+ 
+<h2> Evénements auxquels <%= @user.name %> participe </h2>
+
+<% if !@user.attended_events.empty? %>
+
+      <table class="table table-striped">
+      <tr>
+      <th>Nom de l'événement</th>
+      <th>Date</th>
+      <th>Lieu</th>
+      <th></th>
+
+    </tr>
+
+  <% @user.attended_events.each do |event| %> 
+    <tr>
+    <td> <%= event.name %> </td>
+    <td> <%= event.date.strftime("%d-%m-%Y") %> </td>
+    <td> <%= event.place %> </td>
+    <td> <%= link_to('En voir plus', event_path(event)) %> </td>
+
+    </tr>
+    <% end %>
+  </table>
+
+  <% else %>
+  <p class="text-center"> <%= @user.name %> ne participe à aucun événement</p>
+
+  <% end %>
+

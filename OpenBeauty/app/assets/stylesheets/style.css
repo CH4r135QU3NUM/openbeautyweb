@@ -1,0 +1,106 @@
+
+.cart-footer {
+  padding: 15px;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+.cart-footer a {
+  margin: 5px;
+}
+
+.footer h3 {
+  color: #eee;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+.footer p {
+  color: #bbb;
+  margin-bottom: 20px;
+  line-height: 24px;
+}
+.footer ul.social-footer li {
+  padding: 0px 3px;
+}
+.footer ul.social-footer li a {
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  color: #aaa;
+}
+.footer ul.social-footer li a:hover {
+  color: #eee;
+}
+.footer .tweet ul {
+  list-style: none;
+  padding: 0px;
+}
+.footer .tweet ul li {
+  color: #bbb;
+  padding-bottom: 6px;
+  position: relative;
+  padding-left: 25px;
+}
+.footer .tweet ul li:before {
+  content: "\f099";
+  font-family: 'FontAwesome';
+  color: #eeeeee;
+  font-size: 18px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.footer .tweet ul li a {
+  color: #fff;
+}
+.footer .tags a {
+  display: block;
+  float: left;
+  padding: 3px 10px;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 3px;
+  text-transform: capitalize;
+  color: #bbb;
+}
+.footer .tags a:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #eee;
+}
+.footer .media .media-heading {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #fff;
+  line-height: 26px;
+}
+
+.footer-bottom {
+  padding: 40px 0;
+  background-color: #222;
+}
+.footer-bottom .list-inline {
+  padding: 20px 0;
+}
+.footer-bottom .list-inline li {
+  padding: 0px;
+}
+.footer-bottom .list-inline li:before {
+  content: "|";
+  margin: 0px 10px;
+}
+.footer-bottom .list-inline li:first-child:before {
+  content: "";
+}
+.footer-bottom .list-inline li a {
+  color: #bbb;
+}
+.footer-bottom .list-inline li a:hover {
+  color: #fff;
+}
+.footer-bottom .payment {
+  display: block;
+  margin: 20px auto;
+  margin-top: 0px;
+}

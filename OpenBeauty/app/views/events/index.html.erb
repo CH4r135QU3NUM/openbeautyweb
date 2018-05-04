@@ -1,0 +1,67 @@
+<h4>Obtiens une coupe de cheveux gratuite en t'inscrivant aux évènements près de chez toi et découvre ainsi les nouveaux talents du monde de la beauté.</h4>
+
+<h3>Liste des sessions de coiffure gratuite</h3>
+ 
+<h2> Evénements à venir </h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Model Recheché</th>
+    <th>Date de l'événement</th>
+    <th>Lieu de l'événement</th>
+    <th>Créé par</th>
+    <th>Nombre de participants</th>
+    <th></th>
+
+  </tr>
+ 
+  <% @events.each do |event|%> 
+  <% if event.date >= Date.today %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.date.strftime("%d-%m-%Y") %></td>
+      <td><%= event.place %></td>
+      <td><%= event.creator.name %></td>
+      <td><%= event.attendees.count %></td>
+      <td><%= link_to "Voir l'événement", event_path(event) %></td>
+
+    </tr>
+  <% end %>
+<% end %>
+
+</table>
+
+<h2> Evénements passés </h2>
+
+<table class="table table-striped">
+  <tr>
+    <th>Nom de l'événement</th>
+    <th>Date de l'événement</th>
+    <th>Lieu de l'événement</th>
+    <th>Créé par</th>
+    <th>Nombre de participants</th>
+    <th></th>
+
+  </tr>
+ 
+  <% @events.each do |event|%> 
+  <% if event.date < Date.today %>
+    <tr>
+      <td><%= event.name %></td>
+      <td><%= event.date.strftime("%d-%m-%Y") %></td>
+      <td><%= event.place %></td>
+      <td><%= event.creator.name %></td>
+      <td><%= event.attendees.count %></td>
+
+      <td><%= link_to "Voir l'événement", event_path(event) %></td>
+
+    </tr>
+  <% end %>
+<% end %>
+
+</table>
+
+
+<% unless logged_in? %>
+<p class="text-center"> <%= link_to "Créer mon événement", new_event_path, class: "btn btn-success" %></p>
+<% end%>
